@@ -73,19 +73,6 @@ class AuthService {
     return token;
   };
 
-  generateRandomString = () => {
-    let length = 16;
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    const randomBytes = crypto.randomBytes(length);
-    let randomString = "";
-    for (let i = 0; i < length; i++) {
-      const index = randomBytes[i] % characters.length;
-      randomString += characters.charAt(index);
-    }
-
-    return randomString;
-  };
 }
 
 module.exports = AuthService;

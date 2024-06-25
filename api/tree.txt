@@ -1,0 +1,36 @@
+.
+├── app
+│   ├── controller
+│   │   ├── auth.controller.js
+│   │   ├── provider.controller.js
+│   │   ├── transaction.controller.js
+│   │   └── user.controller.js
+│   ├── middleware
+│   │   ├── auth.middleware.js
+│   │   ├── file-upload.middleware.js
+│   │   └── rbac.middleware.js
+│   ├── models
+│   │   ├── provider.model.js
+│   │   ├── transaction.model.js
+│   │   └── user.model.js
+│   └── services
+│       ├── auth.service.js
+│       └── helper.service.js
+├── app.js
+├── config
+│   ├── config.js
+│   ├── functions.js
+│   └── mongo.config.js
+├── package-lock.json
+├── package.json
+├── responses.json
+├── responses.txt
+├── routes
+│   ├── auth.routes.js
+│   ├── institution.routes.js
+│   ├── route.js
+│   └── user.routes.js
+├── tree.txt
+└── uploads
+
+9 directories, 25 files

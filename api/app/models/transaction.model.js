@@ -5,6 +5,11 @@ const TransactionSchemaDef = new mongoose.Schema({
         ref:'User',
         required: true
     },
+    loginId:{
+        type: mongoose.Types.ObjectId,
+        ref:'LoginDetail',
+        required: true
+    },
     transactionId:{
         type: String,
         required: true
@@ -13,36 +18,8 @@ const TransactionSchemaDef = new mongoose.Schema({
         type: Number,
         required: true
     },
-    device: {
-        type: String,
-        required: true
-    },
-    os: {
-        type: String,
-        required: true
-    },
-    authUsed: {
-        type: String,
-        required: true
-    },
     txnPurpose: {
         type: String,
-        required: true
-    },
-    loginAttempt: {
-        type: Number,
-        required: true
-    },
-    latitude: {
-        type: String,
-        required: true
-    },
-    longitude: {
-        type: String,
-        required: true
-    },
-    distanceMoved: {
-        type: Number,
         required: true
     },
     timeStamp: {

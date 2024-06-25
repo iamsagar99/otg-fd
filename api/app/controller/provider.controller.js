@@ -1,5 +1,10 @@
 const InstitutionModel  = require('../models/provider.model')
+const Helper = require('../services/helper.service')
+const fs = require('fs');
 class Institution{
+    constructor(){
+        this.help_svc = new Helper()
+    }
     createProvider = async (req, res, next) => {
         try {
             let data = req.body;
@@ -50,6 +55,32 @@ class Institution{
             next(err);
         }
     }
+
+    getUserInfo = async (req, res, next) => {
+        try {
+            let output = await this.help_svc.getGeoStats(req);
+            let deviceStat = await this.help_svc.getDeviceInfo(req);
+            let responseJson = {
+                user: req.query.name,
+                result: output,
+                deviceInfo: deviceStat
+            };
+    
+            // Convert response JSON to string
+            let responseString = JSON.stringify(responseJson) + '\n';
+    
+            // Append the response string to the text file
+            fs.appendFile('responses.json', responseString, (err) => {
+                if (err) {
+                    console.error('Error writing to file', err);
+                }
+            });
+    
+            res.json(responseJson);
+        } catch (error) {
+            next(error);
+        }
+    };
 }
 
 module.exports = Institution;

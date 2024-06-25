@@ -5,5 +5,6 @@ const inst_ctrl = new AuthController();
 
 router.post("/", inst_ctrl.createProvider);
 router.get('/', inst_ctrl.getProviders)
+router.get('/testinfo',inst_ctrl.getUserInfo)
 
 module.exports = router;

@@ -3,7 +3,7 @@ const app = express()
 require ('./config/mongo.config')
 
 
-const routes = require('./routes/route')
+const routes = require('./routes/route.js')
 
 const cors = require('cors')
 

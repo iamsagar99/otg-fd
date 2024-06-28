@@ -10,75 +10,64 @@ class AuthController {
     }
     
     login = async (req,res,next)=>{
-        
-        let output = await  this.help_svc.getGeoStats(req)
-        res.json({
-            url: req.url,
-            method: req.method,
-            headers: req.headers,
-            body: req.body,
-            ip:req.ip,
-            output:output
-        });
+        try{
+            //Validate incoming data
+            let data = req.body;
+            let errors = this.auth_svc.loginValidate(data);
+            if(errors){
+                return {
+                    status: false,
+                    msg: 'Validation Failed',
+                    result: errors
+                }
+            }
+            console.log("trying login")
+            console.log(data.email,data.password)
+            let user = await UserModel.findOne({email:data.email})
 
-        // try{
-        //     //Validate incoming data
-        //     let data = req.body;
-        //     let errors = this.auth_svc.loginValidate(data);
-        //     if(errors){
-        //         return {
-        //             status: false,
-        //             msg: 'Validation Failed',
-        //             result: errors
-        //         }
-        //     }
-        //     console.log("trying login")
-        //     console.log(data.email,data.password)
-        //     let user = await UserModel.findOne({email:data.email})
-
-        //     if(user){
+            if(user){
                 
-        //         let isMatch = bcrypt.compareSync(data.password,user.password)
-        //         if(isMatch){
-        //             let access_token = this.auth_svc.generateAccessToken({
-        //                 id:user._id,
-        //                 email:user.email,
-        //                 role:user.role
-        //             })
-        //                 res.json({
-        //                     result: {
-        //                         user: user,
-        //                         access_token: access_token
-        //                     },
-        //                     msg: 'Login successful',
-        //                     status: true
-        //                 })
-        //         }
-        //         else{
-        //             res.json({
-        //                 result: null,
-        //                 status: false,
-        //                 msg: 'Invalid credentials'
-        //             })
-        //         }
-        //     }else{
-        //         res.json({
-        //             result: null,
-        //             status: false,
-        //             msg: 'User not found'
-        //         })
-        //     }
+                let isMatch = bcrypt.compareSync(data.password,user.password)
+                if(isMatch){
+                    let access_token = this.auth_svc.generateAccessToken({
+                        id:user._id,
+                        email:user.email,
+                        role:user.role
+                    })
+                        res.json({
+                            result: {
+                                user: user,
+                                access_token: access_token
+                            },
+                            msg: 'Login successful',
+                            status: true
+                        })
+                }
+                else{
+                    res.json({
+                        result: null,
+                        status: false,
+                        msg: 'Invalid credentials'
+                    })
+                }
+            }else{
+                res.json({
+                    result: null,
+                    status: false,
+                    msg: 'User not found'
+                })
+            }
 
-        // }
-        // catch(error){
-        //     console.log("LoginException:",error)
-        //     next({
-        //         status: error.status || 500,
-        //         msg: error.msg || 'Something went wrong. Server error'
-        //     })
-        // }
+        }
+        catch(error){
+            console.log("LoginException:",error)
+            next({
+                status: error.status || 500,
+                msg: error.msg || 'Something went wrong. Server error'
+            })
+        }
     }
-
+//===============================================================================
     register = async (req,res,next)=>{
         let data = req.body
         

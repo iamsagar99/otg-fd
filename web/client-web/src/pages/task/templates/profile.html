@@ -1,0 +1,178 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Voting System</title>
+    <!--<link rel="stylesheet" href="../static/css/profile.css">-->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            --font-family-sans-serif:"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+            --font-family-monospace:"Liberation Mono","Courier New",monospace;  
+            background-color: black; 
+            color: #fff; 
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px;
+            background-color: black;
+            margin-left: 704px;
+            
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: hsl(210,100%, 39%);
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 0px;
+        }
+
+        /* Login button style */
+        .btn-login {
+        background-color: hsl(210,100%, 39%);
+        }
+
+
+        /*styles for the profile section */
+        .profile-section {
+            display: flex;
+            margin-right: auto; /* Pushes the profile section to the left */
+        }
+
+        .profile-picture {
+            width: 252px; 
+            height: 242px; 
+            border-radius: 50%;
+            margin-right: 52px;
+            margin-left: 75px;
+            margin-top: -39px;
+        }
+
+        .profile-options {
+            display: flex;
+            flex-direction: column;
+            margin-top: 255px;
+            margin-left: -795px;
+        }
+
+        .btn-change-picture {
+            display: inline-block;
+            padding: 17px;
+            background-color: hsl(210,100%, 39%);
+            color: #fff;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .btn-edit-profile {
+            display: inline-block;
+            padding: 12px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border: 2px solid white;
+            border-radius: 35px;
+            text-decoration: none;
+            margin: 31px 33px;
+            margin-top: -1px;
+        }
+        .btn-edit-profile::after {
+            content: '\270E'; /* Unicode character for edit sign */
+            font-size: 15px;
+            transform: translateY(-50%);
+            margin: 10px;
+        }
+
+
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 17px; 
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            color: #fff;
+            margin-left: 295px;
+            margin-left: 295px;
+            justify-content: space-around;
+        }
+
+        .info-item {
+            margin-bottom: 14px;
+        }
+
+        .info-item label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+</style>
+</head>
+<body>
+    <header>
+        <b><a href="/profile">Personal Information</a></b>
+        <b><a href="/contact">Contact</a></b>
+        <b><a href="">Election</a></b>
+        <a href="" class="btn btn-login">Vote</a> 
+    </header>
+    <div class="profile-container">
+        <div class="profile-section">
+            <img src="../static/Images/profile.jpg" alt="Profile Picture" class="profile-picture">
+            <div class="profile-info">
+                <div class="info-item">
+                    <label>Name:</label>
+                    <span>John Doe</span>
+                </div>
+                <div class="info-item">
+                    <label>Father's Name:</label>
+                    <span>John Doe Sr.</span>
+                </div>
+                <div class="info-item">
+                    <label>Age:</label>
+                    <span>30</span>
+                </div>
+                <div class="info-item">
+                    <label>Email:</label>
+                    <span>john.doe@example.com</span>
+                </div>
+                <div class="info-item">
+                    <label>Phone Number:</label>
+                    <span>(123) 456-7890</span>
+                </div>
+                <div class="info-item">
+                    <label>Address:</label>
+                    <span>123 Main St, City</span>
+                </div>
+                <div class="info-item">
+                    <label>Verified:</label>
+                    <span>Yes</span>
+                </div>
+                <div class="info-item">
+                    <label>Eligible:</label>
+                    <span>Yes</span>
+                </div>
+            </div>
+            <div class="profile-options">
+                <label for="changeProfilePicture" class="btn btn-change-picture">Change Profile Picture</label>
+                <br>
+                <a href="#" class="btn btn-edit-profile">Edit Profile</a>
+                <input type="file" id="changeProfilePicture" style="display: none;">
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Voting System</title>
+    <link rel="stylesheet" href="../static/css/signups.css">
+    
+</head>
+<body>
+    <br>
+    <div class="content"></div>
+    <div class="signup-container">
+        <u><h2><b>Registration Form</b></h2></u>
+        <form method="post" id="signupForm">  
+            {% csrf_token %}
+
+            <div class="form-group">
+                <input type="text" id="fullName" placeholder="FullName" name="fullName" required>
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="username" placeholder="Username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <input type="Fathername" id="Fathername" placeholder="Father's/Mother's Name" name="Fathername" required>
+            </div>
+
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <input type="tel" id="contactNumber" placeholder="Contact Number" name="contactNumber" required>
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Password" name="password" required>
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="confirmPassword" placeholder="Re-enter Password" ame="confirmPassword" required>
+            </div>
+            <div class="form-group terms-checkbox">
+                <input type="checkbox" id="termsCheckbox" name="termsCheckbox" required> 
+                <label><a href="/terms">I agree to the Term of Services and Privacy Policy</label></a>
+            </div>
+                <a href="/logins"><button type="button" onclick="submitForm()">Submit</button></a>
+        </form>
+            <div class="login-link">
+                <p>Have an account? <a href="/logins">Login Here </a></p>
+            </div>
+            <div class="back-to-home1">
+                <a href="/homes">Back to Home Page</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img src="../static/Images/signup.jpg" alt="Your Image"> 
+    </div>
+    <script>
+         function submitForm() {
+            document.getElementById("signupForm").submit();
+        }
+    </script>
+</body>
+</html>
+
+

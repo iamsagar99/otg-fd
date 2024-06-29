@@ -8,31 +8,32 @@ const LoginDetailSchemaDef = new mongoose.Schema({
     },
     attempts:{
         type: Number,
-        required: true
+        required: true,
+        default:0
     },
     latitude:{
         type: Number,
-        required: true
+        required: false
     },
     longitude:{
         type: Number,
-        required:true
+        required:false
     },
     device: {
         type: String,
-        required: true
+        required: false
     },
     os: {
         type: String,
-        required: true
+        required: false
     },
     authUsed: {
         type: String,
-        required: true
+        required: false
     },
     distanceMoved: {
         type: Number,
-        required: true
+        required: false
     },
     timeStamp: {
         type: Date,
@@ -46,3 +47,8 @@ const LoginDetailSchemaDef = new mongoose.Schema({
 })
 
 module.exports = mongoose.model('LoginDetail', LoginDetailSchemaDef);
+
+//user logout huda request pathayera attempts reset garna parxa
+// yo timestamp ra transaction ko timestamp subtract garepaxi session length aauxa
+//logout hunu vanda agadi jasto most used auth method, seession len, login attempts ko aggregrate garera rakhna parxa
+// or login success vayepaxi aggregrate garda ramro

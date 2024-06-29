@@ -1,0 +1,18 @@
+.bimg{
+    height: 50px;
+    margin:0;
+    padding:0;
+}
+
+.navbar{
+    background-color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-link:hover {
+    background-color: #0d2547;
+    color: black; /* Optionally change text color */
+    border-radius: 5px;
+}

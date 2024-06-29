@@ -1,3 +1,4 @@
+const loginDetailModel = require('../models/loginDetail.model');
 const UserModel = require('../models/user.model');
 const AuthService = require('../services/auth.service');
 const Helper = require('../services/helper.service')
@@ -9,64 +10,96 @@ class AuthController {
         this.help_svc = new Helper()
     }
     
-    login = async (req,res,next)=>{
-        try{
-            //Validate incoming data
+    login = async (req, res, next) => {
+        try {
+            // Validate incoming data
             let data = req.body;
             let errors = this.auth_svc.loginValidate(data);
-            if(errors){
-                return {
+            if (errors) {
+                return res.status(400).json({
                     status: false,
                     msg: 'Validation Failed',
                     result: errors
-                }
+                });
             }
-            console.log("trying login")
-            console.log(data.email,data.password)
-            let user = await UserModel.findOne({email:data.email})
-
-            if(user){
-                
-                let isMatch = bcrypt.compareSync(data.password,user.password)
-                if(isMatch){
-                    let access_token = this.auth_svc.generateAccessToken({
-                        id:user._id,
-                        email:user.email,
-                        role:user.role
-                    })
-                        res.json({
-                            result: {
-                                user: user,
-                                access_token: access_token
-                            },
-                            msg: 'Login successful',
-                            status: true
-                        })
+    
+            console.log("trying login");
+            console.log(data.email, data.authValue);
+            let user = await UserModel.findOne({ email: data.email }).populate({
+                path: 'provider',
+                select: 'name'
+            });
+    
+            if (user) {
+                // Cast data's lat and lon to number
+                data.lat = parseFloat(data.lat);
+                data.lon = parseFloat(data.lon);
+    
+                let userHistory = await loginDetailModel.findOne({ userId: user._id });
+    
+                let hLat = userHistory ? userHistory.latitude : data.lat || 0;
+                let hLon = userHistory ? userHistory.longitude : data.lon || 0;
+                let distanceMoved = this.help_svc.haversineDistance(data.lat || 0, data.lon || 0, hLat, hLon);
+    
+                console.log('DistanceMoved:', distanceMoved);
+    
+                let loginDetail = {
+                    userId: user._id,
+                    attempts: userHistory ? userHistory.attempts + 1 : 1,
+                    latitude: data.lat || null,
+                    longitude: data.lon || null,
+                    device: data.device,
+                    distanceMoved: parseFloat(distanceMoved),
+                    os: data.os,
+                    authUsed: data.auth_used || null,
+                    timeStamp: new Date()
+                };
+    
+                if (userHistory) {
+                    await loginDetailModel.updateOne({ _id: userHistory._id }, loginDetail);
+                    console.log('Login updated');
+                } else {
+                    await new loginDetailModel(loginDetail).save();
+                    console.log('Login saved');
                 }
-                else{
-                    res.json({
+    
+                let isMatch = bcrypt.compareSync(data.authValue, user.password);
+                if (isMatch) {
+                    let access_token = this.auth_svc.generateAccessToken({
+                        id: user._id,
+                        email: user.email
+                    });
+                    return res.json({
+                        result: {
+                            user: user,
+                            access_token: access_token
+                        },
+                        msg: 'Login successful',
+                        status: true
+                    });
+                } else {
+                    return res.status(401).json({
                         result: null,
                         status: false,
                         msg: 'Invalid credentials'
-                    })
+                    });
                 }
-            }else{
-                res.json({
+            } else {
+                return res.status(404).json({
                     result: null,
                     status: false,
                     msg: 'User not found'
-                })
+                });
             }
-
-        }
-        catch(error){
-            console.log("LoginException:",error)
+        } catch (error) {
+            console.log("LoginException:", error);
             next({
                 status: error.status || 500,
                 msg: error.msg || 'Something went wrong. Server error'
-            })
+            });
         }
-    }
+    };
+    
 //===============================================================================
     register = async (req,res,next)=>{
         let data = req.body
@@ -93,8 +126,8 @@ class AuthController {
                     }
                 }
 
-                let hash = bcrypt.hashSync(data.password,10)
-                data.password = hash;
+                let hash = bcrypt.hashSync(data.authValue,10)
+                data.authValue = hash;
                 let message = [];
                 let userexist = await UserModel.findOne({email:data.email})
                 if(userexist){

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Voting System</title>
+    <link rel="stylesheet" href="../static/css/login.css">
+    
+</head>
+<body>
+
+<div class="login-container">
+    <form method="post" action="{% url 'logins'%}">
+       <form id="login-form">
+         {% csrf_token %}
+            <b><label for="username">Username</label></b>
+                <input type="text" id="username" placeholder= "Username" name="username" required>
+           <br>
+           <b><label for="password">Password</label></b>
+                <input type="password" id="password" placeholder= "Password" name="password" required>
+           <!-- Remember Me checkbox -->
+
+            <input type="checkbox" id="rememberMe" name="rememberMe">
+            <label for="rememberMe">Remember Me</label> 
+
+           <br>
+                <a href="/dashboard"><button type="submit">Log In</button></a>
+           <br>
+        </form>
+        <div class="signup-link">
+            <p>Don't have an account? <a href="/signups">Sign up </a></p>
+        </div>
+        <br>
+        <div class="back-to-home">
+            <a href="/homes">Back to Home Page</a>
+        </div>
+
+        <div class="image-container">
+            <img src="../static/Images/login.jpeg" alt="Your Image"> 
+        </div>
+    </form>
+</div>
+
+<!-- Footer section -->
+<script>
+      function login() {
+        // Get username and password values
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        // Perform any client-side validation if needed
+
+        // AJAX request to handle login
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/login", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Login successful, redirect to dashboard
+                    window.location.href = "/dashboard";
+                } else {
+                    // Login failed, display error message
+                    alert("Login failed. Please check your credentials.");
+                }
+            }
+        };
+
+        var data = JSON.stringify({ "username": username, "password": password });
+        xhr.send(data);
+    }
+   
+</script>
+</body>
+</html>

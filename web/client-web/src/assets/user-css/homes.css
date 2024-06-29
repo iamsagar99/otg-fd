@@ -1,0 +1,363 @@
+        body {
+            margin: 0;
+            padding: 0;
+            --font-family-sans-serif:"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+            --font-family-monospace:"Liberation Mono","Courier New",monospace;  
+            background-color: black; 
+            color: #fff; 
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px;
+            background-color: black;
+            margin-left: 801px;
+            
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .content {
+            max-width: 560px;
+            margin-left: 60px;
+            margin-top: -33px;
+        }
+
+        .content img {
+            max-width: 85%;
+            height: auto;
+            margin-top: -190px;
+            margin-left: 6px;
+        }
+
+        .caption {
+            font-size: 30px;
+            margin-bottom: 55px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0f3c69; /* Green button color */
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 0px;
+        }
+        .content1 {
+            max-width: 537px;
+            margin-top: -208px;
+            margin-right: 150px;
+        }
+/* Login button style */
+.btn-login {
+    background-color: #0f3c69; 
+    border: 3px solid #0b2845;
+}
+
+/* Register and Read More button style */
+.btn-register, .btn-readmore {
+    background-color: #0f3c69;
+    margin-left: 10px;
+    font-size: 20px;
+    margin-left: 45px; 
+    border: 3px solid #0b2845;
+    margin: -28px 18px;
+}
+.btn-login:hover {
+    background-color: black;
+}
+.btn-readmore:hover, .btn-register:hover {
+    background-color: black;
+}
+
+
+/*about us */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007fff;
+    color: white;
+    text-decoration: none;
+    border-radius: 15px;
+    transition: background-color 0.4s ease;
+    margin-left: 19px;
+    margin-top: 13px;
+    border: 3px solid #0b2845;
+}
+
+.button:hover {
+    background-color: black;
+}
+#aboutUs {
+    background-color: black;
+    padding: 14px;
+    justify-content: space-around; 
+  }
+  
+  h3{
+    text-align: center;
+    font-size: 35px;
+    margin-top: -35px;
+  }
+  
+  .info-container {
+      display: flex;
+      flex-wrap: wrap; /* Allow items to wrap to the next line */
+      justify-content: space-around; 
+      width: 100%;
+      margin-top: 23px;
+    }
+  
+    .info-box {
+      border: 2px solid #007fff;
+      padding: 30px;
+      border-radius: 103px;
+      width: 275px;
+      margin: 10px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      transform: rotate(10deg);
+    }
+    .info-box:hover {
+      transform: scale(1.1);
+    }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        color: black;
+        background-color:#0f3c69;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 10px;
+      }
+      .dropdown-content a {
+        display: block;
+        padding: 6px;
+        margin: 3px;
+        color: #fff;
+        text-decoration: #0f3c69;
+        border-radius: 10px;
+    }
+    
+    
+      .dropdown:hover .dropdown-content {
+        display: block;
+        color: black;
+        background-color: #0f3c69;
+      }
+      .dropdown-content a:hover {
+        background-color: black;
+    }
+
+
+ /*Contact us*/
+.contact-form{
+    margin-top: 10px;
+}
+
+ .contact-box {
+    max-width: 403px;
+    margin: 150px 45px; /* Center the box */
+    padding: 27px;
+    border-radius: 63px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-us {
+    text-align: center;
+    margin: 0;
+}
+.vertical-line {
+    height: 100%;
+    width: 427px;
+    /* background-color: #007fff; */
+    margin-bottom: 41px;
+    margin-top: -225px;
+    margin-left: 380px;
+    /* border: 2px solid #007fff; */
+    border-radius: 3px;
+}
+
+/* Apply the class to the hr element */
+hr.vertical-line {
+    transform: rotate(90deg);
+
+}
+
+
+h2{
+    text-align: center;
+    font-size: 26px;
+    margin-top: -9px;
+    margin-left: -35px;
+}
+
+.contact-form {
+    margin-top: 52px;
+    margin-left: 716px;
+    border-radius: 52px; 
+    padding: 62px 40px; 
+    max-width: 358px;
+    position: relative;
+}
+
+.contact-form h3 {
+    font-size: 24px;
+    color: white;
+    margin-left: -281px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin-top: 15px;
+}
+
+label {
+    font-size: 18px;
+    margin-bottom: 9px;
+}
+
+input,
+textarea {
+    padding: 13px;
+    margin-bottom: 15px;
+    border: 3px solid #0f3c69;
+    border-radius: 10px;
+    font-size: 17px;
+}
+
+button.btn-send {
+    background-color: #007fff;
+    color: #fff;
+    padding: 14px 35px;
+    border-radius: 42px;
+    border: 1px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button.btn-send:hover {
+    background-color: black;
+}
+
+h4{
+    margin-top: -325px;
+    font-size: 25px;
+    margin-left: 93px;
+}
+
+
+    /*Footer*/
+footer { 
+    color: white;
+    border: 2px solid white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; /* Center items vertically */
+}
+
+.footer-section {
+    text-align: left;
+    padding: 0 20px; 
+
+}
+
+.footer-section h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 8px;
+}
+
+#feedback-form {
+    margin-top: 10px;
+}
+
+#feedback-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-send {
+    background-color: #0f3c69;
+    color: #fff;
+    padding: 5px 14px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; /* Center items vertically */
+    margin-left: -52px;
+}
+
+.footer-section {
+    text-align: left;
+    padding: 0 20px; 
+    position: relative;
+}
+
+.footer-section:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    height: 94px; 
+    width: 4px; 
+    background-color: #0f3c69; /* Blue line color */
+    right: 0;
+    top: 50%;
+    margin-right: -40px;
+    transform: translateY(-50%);
+}
+
+
+/*about us Button bak to home*/
+.buttons-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+
+.btnhome{
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.btnhome{
+    background-color: #136fcb;
+    color: #fff;
+    border-radius: 43px;
+    border:1px solid #136fcb;
+}

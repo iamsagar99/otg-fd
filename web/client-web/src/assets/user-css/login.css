@@ -1,0 +1,122 @@
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background-color: rgb(4, 14, 27); */
+    padding: 20px;
+    color: white;
+}
+
+.login-container {
+    background-color: rgb(34, 34, 34);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem; /* Adjusted font size */
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group-login {
+    margin-bottom: 15px;
+}
+
+.form-group-login label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem; /* Adjusted font size */
+}
+
+.form-group-login input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgb(34, 34, 34);
+    color: white;
+    box-sizing: border-box;
+    font-size: 1rem; /* Adjusted font size */
+}
+
+.form-group-login input.input-error {
+    border-color: red;
+}
+
+.form-group-login .error {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 5px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+
+.submit-button-login {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+}
+.cancel-button {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.cancel-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.cancel-button:hover {
+    background-color: #c82333;
+}
+
+.submit-button-login {
+    background-color: #ffc107; /* Adjusted color to match the link */
+    color: black;
+}
+
+.submit-button-login:hover {
+    background-color: #e0a800; /* Slightly darker */
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link a {
+    color: #ffc107; /* Yellow color */
+    text-decoration: none;
+    font-size: 1rem; /* Adjusted font size */
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}

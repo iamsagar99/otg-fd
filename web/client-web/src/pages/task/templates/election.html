@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ongoing Elections - Admin Dashboard</title>
+    <link rel="stylesheet" href="../static/css/election.css">
+
+</head>
+<body>
+    <div class="page-container">
+    <div class="dashboard-container">
+        <div class="options">
+            <div class="option" onclick="loadContent('election')">Ongoing Elections</div>
+            <div class="option" onclick="loadContent('voter')"><a href="/voter">Voter Management</a></div>
+            <div class="option" onclick="loadContent('election-results')">Election Results</div>
+        </div>
+    </div>
+    <br>
+        <h1>Ongoing Elections</h1>         <br>
+        <p>View and Manage ongoing elections.</p>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Election Name</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>General Election 2024</td>
+                    <td>March 21, 2024</td>
+                    <td>Ongoing</td>
+                    <td>
+                        <a href="/admin/edit-election?id=1" class="button">Edit</a>
+                        <a href="/admin/manage-candidates?id=1" class="button">Manage Candidates</a>
+                        <a href="/election" class="button">Close Election</a>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>General Election 2024</td>
+                    <td>March 20, 2024</td>
+                    <td>Ongoing</td>
+                    <td>
+                        <a href="/admin/edit-election?id=1" class="button">Edit</a>
+                        <a href="/admin/manage-candidates?id=1" class="button">Manage Candidates</a>
+                        <a href="/election" class="button">Close Election</a>
+                    </td>
+                </tr>
+
+                <!-- Add more rows for additional ongoing elections -->
+            </tbody>
+        </table>
+         <br>
+          <br>
+        <a href="/admin/create-election" class="button">Create New Election</a>
+    </div>
+</body>
+</html>

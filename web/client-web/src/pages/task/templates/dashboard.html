@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    
+</head>
+<body>
+<div class="content" id="content">
+            <h1>Welcome Admin!</h1>
+        </div>
+
+    <div class="dashboard-container">
+        <div class="options">
+            <div class="option" onclick="loadContent('election')">Ongoing Elections</div>
+            <div class="option" onclick="loadContent('voter')"><a href="/voter">Voter Management</a></div>
+            <div class="option" onclick="loadContent('election-results')">Election Results</div>
+        </div>
+    </div>
+
+   
+<script>
+    function loadContent(option) {
+        var content = document.getElementById("content");
+        switch(option) {
+            case 'election':
+                content.innerHTML = `
+                <link rel="stylesheet" href="../static/css/election.css">
+                    <h1>Ongoing Elections</h1>
+                    <p>View and manage ongoing elections content here.</p>
+                    <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Election Name</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>General Election 2024</td>
+                    <td>March 21, 2024</td>
+                    <td>Ongoing</td>
+                    <td>
+                        <a href="/admin/edit-election?id=1" class="button">Edit</a>
+                        <a href="/admin/manage-candidates?id=1" class="button">Manage Candidates</a>
+                        <a href="/election" class="button">Close Election</a>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>General Election 2024</td>
+                    <td>March 20, 2024</td>
+                    <td>Ongoing</td>
+                    <td>
+                        <a href="/admin/edit-election?id=1" class="button">Edit</a>
+                        <a href="/admin/manage-candidates?id=1" class="button">Manage Candidates</a>
+                        <a href="/election" class="button">Close Election</a>
+                    </td>
+                </tr>
+
+                <!-- Add more rows for additional ongoing elections -->
+            </tbody>
+        </table>
+         <br>
+          <br>
+        <a href="/admin/create-election" class="button">Create New Election</a>
+                    <!-- Add your content for ongoing elections -->
+                `;
+                break;
+            case 'voter':
+                content.innerHTML = `
+                    <h1>Voter Management</h1>
+                    <div class="options">
+                        <div class="option">
+                            <h2>Register New Voter</h2>
+                            <p>Register a new voter into the system</p>
+                            <a href="/admin/register-voter">Register Voter</a>
+                        </div>
+                        <div class="option">
+                            <h2>View Voters List</h2>
+                            <p>View and manage the list of registered voters</p>
+                            <a href="/admin/view-voters">View Voters</a>
+                        </div>
+                        <div class="option">
+                            <h2>Delete Voter</h2>
+                            <p>Delete a voter from the system</p>
+                            <a href="/admin/delete-voter">Delete Voter</a>
+                        </div>
+                    </div>
+                `;
+                break;
+            case 'election-results':
+                content.innerHTML = `
+                    <h1>Election Results</h1>
+                    <p>View results of completed elections content here.</p>
+                    <!-- Add your content for election results -->
+                `;
+                break;
+            default:
+                content.innerHTML = `<h1>Welcome Admin!</h1>`;
+        }
+    }
+</script>
+</body>
+</html>

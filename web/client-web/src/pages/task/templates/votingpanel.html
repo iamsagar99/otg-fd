@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Panel</title>
+    <link rel="stylesheet" href="../static/css/votingpanel.css">
+   
+</head>
+<body>
+    <u><h1>Voting Panel</h1></u>
+    <header>
+        <b><a href="/profile">Personal Information</a></b>
+        <b><a href="/contact">Contact</a></b>
+        <!--<a href="Election.html" class="btn btn-login">Election</a></b>-->
+        <a href="/votingpanel" class="btn btn-login">Vote</a> 
+    </header>
+        <!--<a href="homes.html" class="button">Back to Home</a>-->
+
+    <br>
+    <br>
+    <br>
+
+<div class="candidates-box">
+    <div class="candidate-container">
+        <div class="select-checkbox"onclick="toggleCheckbox(this)"></div>
+            <div class="candidate-box">
+                <div class="candidate-info">
+                    <h2>Baburao Ganpatrao Apte</h2>
+                </div>
+            </div>
+    </div>
+
+
+    <!-- Block for Narendra Modi -->
+    <div class="candidate-container">
+        <div class="select-checkbox"onclick="toggleCheckbox(this)"></div>
+        <div class="candidate-box">
+            <div class="candidate-info">
+                <h2>Narendra Modi</h2>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Block for Rahul Gandhi -->
+    <div class="candidate-container">
+        <div class="select-checkbox"onclick="toggleCheckbox(this)"></div>
+        <div class="candidate-box">
+            <div class="candidate-info">
+                <h2>Rahul Gandhi</h2>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Block for Arvind Kejriwal -->
+    <div class="candidate-container">
+        <div class="select-checkbox"onclick="toggleCheckbox(this)"></div>
+        <div class="candidate-box">
+            <div class="candidate-info">
+                <h2>Arvind Kejriwal</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Add similar blocks for other candidates -->
+
+<button class="submit-button">Submit</button>
+
+<script>
+        function toggleCheckbox(element) {
+    element.classList.toggle('checkbox-checked');
+}
+    
+</script>
+
+</body>
+</html>

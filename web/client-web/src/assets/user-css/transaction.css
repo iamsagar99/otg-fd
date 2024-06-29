@@ -1,0 +1,81 @@
+.send-money-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(34, 34, 34);
+  color: white;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius:10px
+}
+
+.send-money-container {
+  background-color: rgb(44, 44, 44);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+.send-money-header {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem; /* Adjusted font size */
+}
+
+.send-money-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group-sendmoney {
+  margin-bottom: 15px;
+}
+
+.form-group-sendmoney label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1rem; /* Adjusted font size */
+}
+
+.form-group-sendmoney input,
+.form-group-sendmoney select {
+  width: calc(100% - 20px); /* Adjust width to take full space minus padding */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgb(34, 34, 34);
+  color: white;
+  box-sizing: border-box;
+  font-size: 1rem; /* Adjusted font size */
+}
+
+.form-group-sendmoney input.input-error,
+.form-group-sendmoney select.input-error {
+  border-color: red;
+}
+
+.form-group-sendmoney .error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 5px;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffc107; /* Yellow color */
+  color: black;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #e0a800; /* Slightly darker */
+}

@@ -1,0 +1,53 @@
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFCC00; /* Blue background */
+  height: 80vh;
+  color: Black;
+  text-align: center;
+  border-radius: 10px; /* Curved corners */
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px; /* Adjust the size to fit your design */
+  height: 300px; /* Adjust the size to fit your design */
+  background: rgba(0, 0, 0, 0.1); /* Lighter blue circle */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem; /* Increased font size */
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  padding: 10px 20px;
+  font-size: 1.25rem;
+  color: white;
+  background-color: #007BFF; /* Blue accent color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}

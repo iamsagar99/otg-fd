@@ -67,6 +67,24 @@ class Helper {
         throw error;
       }
   }
+
+  haversineDistance(lat1, lon1, lat2, lon2) {
+    const toRadians = (degrees) => degrees * (Math.PI / 180);
+
+    lat1 = toRadians(lat1);
+    lon1 = toRadians(lon1);
+    lat2 = toRadians(lat2);
+    lon2 = toRadians(lon2);
+
+    const dlon = lon2 - lon1;
+    const dlat = lat2 - lat1;
+
+    const a = Math.sin(dlat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlon / 2) ** 2;
+    const c = 2 * Math.asin(Math.sqrt(a));
+
+    const km = 6371 * c; // Radius of Earth in kilometers
+    return km;
+}
 }
 
 module.exports = Helper;

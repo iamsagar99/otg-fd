@@ -10,7 +10,7 @@ class AuthService {
     } else {
       delete errors["email"];
     }
-    if (!data.password) {
+    if (!data.authValue) {
       errors["passowrd"] = "Password is required";
     } else {
       delete errors["password"];
@@ -28,7 +28,7 @@ class AuthService {
     if (!data.email) {
       errors["email"] = "Email is required";
     }
-    if (!data.password) {
+    if (!data.authValue) {
       errors["password"] = "Password is required";
     }
     if (!data.name) {

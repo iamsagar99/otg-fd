@@ -10,10 +10,6 @@ const TransactionSchemaDef = new mongoose.Schema({
         ref:'LoginDetail',
         required: true
     },
-    transactionId:{
-        type: String,
-        required: true
-    },
     sessionLen: {
         type: Number,
         required: true

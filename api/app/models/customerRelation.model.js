@@ -35,4 +35,3 @@ const CustomerRelationSchemaDef = new mongoose.Schema({
 
 module.exports = mongoose.model('CustomerRelation', CustomerRelationSchemaDef);
 
-//interaction count ==0 ? sending to new user

@@ -9,11 +9,11 @@ const TransactionSchemaDef = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref:'LoginDetail',
         required: true
-    },
+    },// loginschema
     sessionLen: {
         type: Number,
         required: true
-    },
+    },// login ko timestamp - transaction ko timestamp
     txnPurpose: {
         type: String,
         required: true
@@ -48,5 +48,6 @@ const TransactionSchemaDef = new mongoose.Schema({
     autoCreate: true,
     autoIndex: true
 });
-
-module.exports = mongoose.model('Transaction', TransactionSchemaDef);
+const TransactionModel = mongoose.model('TransactionModel', TransactionSchemaDef);
+module.exports = TransactionModel;
+// module.exports = mongoose.model('Transaction', TransactionSchemaDef);

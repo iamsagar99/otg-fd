@@ -96,8 +96,8 @@ class AuthController {
               metadata = new MetadataModel(obj);
             // metadata = obj
             } else {
-              metadata.device.push(data.device);
-              metadata.os.push(data.os);
+              metadata.device.push(data.Device_Used);
+              metadata.os.push(data.OS);
             //   metadata.txn_purpose.push(data.txn_purpose); // txn purpose chai transaction vayepaxi push garne
             }
             console.log(metadata)
@@ -141,38 +141,52 @@ class AuthController {
   //===============================================================================
   register = async (req, res, next) => {
     let data = req.body;
-
+    console.log('chkp1',data)
     try {
       let errors = this.auth_svc.registerValidate(data);
       if (errors) {
+        console.log('chkp2',errors)
+
         return {
           status: false,
           msg: "Validation Failed",
           result: errors,
         };
       } else {
+        console.log('chkp3')
+
         data.accountNumber = this.help_svc.generateRandomString();
         let doesAccountNumExist = true;
 
         while (doesAccountNumExist) {
+          console.log('chkp4')
+
           if (await UserModel.findOne({ accountNumber: data.accountNumber })) {
+            console.log('chkp5')
+
             data.accountNumber = this.help_svc.generateRandomString();
           } else {
+            console.log('chkp6')
+
             doesAccountNumExist = false;
           }
         }
 
-        let hash = bcrypt.hashSync(data.authValue, 10);
+        let hash = bcrypt.hashSync(data.password, 10);
         data.authValue = hash;
         let message = [];
         let userexist = await UserModel.findOne({ email: data.email });
         if (userexist) {
+          console.log('chkp7')
+
           message.push("User already exists");
         }
         let user = new UserModel(data);
         user
           .save()
           .then((ack) => {
+            console.log('chkp8')
+
             message.push("User registered successfully");
             let msg = message[0];
             res.json({

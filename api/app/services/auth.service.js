@@ -28,7 +28,7 @@ class AuthService {
     if (!data.email) {
       errors["email"] = "Email is required";
     }
-    if (!data.authValue) {
+    if (!data.password) {
       errors["password"] = "Password is required";
     }
     if (!data.name) {

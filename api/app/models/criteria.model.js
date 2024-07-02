@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const CommonCriteriaSchema = new mongoose.Schema({
-    Send_total_amount_per_day: {
+    total_amount_per_day: {
         type: Number,
         required: true
     },
@@ -9,63 +9,31 @@ const CommonCriteriaSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    Send_max_count_per_day: {
+    max_count_per_day: {
         type: Number,
         required: true
     },
-    Send_total_amount_per_month: {
+    total_amount_per_month: {
         type: Number,
         required: true
     },
-    Send_max_count_per_month: {
+    max_count_per_month: {
         type: Number,
         required: true
     },
-    Receive_total_amount_per_day: {
+    remaining_amount_per_day: {
         type: Number,
         required: true
     },
-    Receive_max_count_per_day: {
+    remaining_count_per_day: {
         type: Number,
         required: true
     },
-    Receive_total_amount_per_month: {
+    remaining_amount_per_month: {
         type: Number,
         required: true
     },
-    Receive_max_count_per_month: {
-        type: Number,
-        required: true
-    },
-    Remaining_Send_total_amount_per_day: {
-        type: Number,
-        required: true
-    },
-    Remaining_Send_count_per_day: {
-        type: Number,
-        required: true
-    },
-    Remaining_Send_total_amount_per_month: {
-        type: Number,
-        required: true
-    },
-    Remaining_Send_count_per_month: {
-        type: Number,
-        required: true
-    },
-    Remaining_Receive_total_amount_per_day: {
-        type: Number,
-        required: true
-    },
-    Remaining_Receive_count_per_day: {
-        type: Number,
-        required: true
-    },
-    Remaining_Receive_total_amount_per_month: {
-        type: Number,
-        required: true
-    },
-    Remaining_Receive_count_per_month: {
+    remaining_count_per_month: {
         type: Number,
         required: true
     }
@@ -75,9 +43,13 @@ const ReceiverTypeSpecificSchema = new mongoose.Schema({
     receiver_type: {
         type: String,
         required: true,
-        enum: ['type1', 'type2', 'type3'] // replace with actual receiver types
+        enum: ['Merchant', 'Customer', 'Agent'] // actual receiver types
     },
-    criteria: {
+    send_criteria: {
+        type: CommonCriteriaSchema,
+        required: true
+    },
+    receive_criteria: {
         type: CommonCriteriaSchema,
         required: true
     }
@@ -86,7 +58,7 @@ const ReceiverTypeSpecificSchema = new mongoose.Schema({
 });
 
 const CustomerCriteriaSchema = new mongoose.Schema({
-    User: {
+    user: {
         type: mongoose.Types.ObjectId,
         ref: 'User',
         required: true
@@ -101,4 +73,5 @@ const CustomerCriteriaSchema = new mongoose.Schema({
     autoIndex: true
 });
 
-module.exports = mongoose.model('UserCriteria', CustomerCriteriaSchema);
+const UserCriteriaModel = mongoose.model('UserCriteriaModel', CustomerCriteriaSchema);
+module.exports = UserCriteriaModel;

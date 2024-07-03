@@ -6,8 +6,9 @@ const API_ENDPOINTS = {
     RESULT:"/result",
     USER:"/user",
     Election:"/election",
-    VOTE:"/vote"
-    
+    VOTE:"/vote",
+    TXN:"/txn",
+    FACTS:"/facts"
 }
 
 export default API_ENDPOINTS;

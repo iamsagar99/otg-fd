@@ -1,8 +1,13 @@
 const router = require("express").Router();
 const TransactionController = require("../app/controller/transaction.controller.js");
+const checkCriteria = require("../app/middleware/txn.middleware.js");  // Ensure this path is correct
+const loginCheck = require("../app/middleware/auth.middleware.js")
 const txn_ctrl = new TransactionController();
 
-//post request
-router.post("/add",txn_ctrl.addTransaction);
+// Post request with checkCriteria middleware
+router.post("/add",loginCheck, checkCriteria, txn_ctrl.addTransaction);
+router.get("/fetchtxn/:txnId",loginCheck,txn_ctrl.getTransactionByTxnId)
+router.get('/fetchalltxn',loginCheck,txn_ctrl.getAllTransactions)
+router.get('/getusertxn/:userId',loginCheck,txn_ctrl.getTransactionOfUser)
 
 module.exports = router;

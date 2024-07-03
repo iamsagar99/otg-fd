@@ -4,7 +4,7 @@ const app = express();
 const auth_routes = require('./auth.routes.js')
 const provider_routes = require('./institution.routes.js')
 const user_routes = require("./user.routes");
-const criteria_routes = require('./testroutes.js')
+const criteria_routes = require('./criteria.routes.js')
 const facts_routes = require('./facts.routes.js')
 const txn_routes = require('./transaction.routes.js')
 app.use('/user', user_routes);

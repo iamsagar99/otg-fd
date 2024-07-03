@@ -1,0 +1,115 @@
+.transaction-details {
+    background-color: rgb(34, 34, 34);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: auto;
+    margin-top:6vh;
+    font-family: Arial, sans-serif;
+}
+
+.balance-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.balance {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.balance-label {
+    font-size: 18px;
+    align-self: center;
+}
+
+.transaction-info {
+    background-color:rgb(34, 34, 34);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.transaction-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.bank-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.transaction-summary {
+    display: flex;
+    flex-direction: column;
+}
+
+.transaction-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.transaction-time {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.transaction-status {
+    text-align: center;
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.complete {
+    background-color: #edb51c;
+}
+
+.transaction-details-section {
+    margin-top: 10px;
+}
+
+.transaction-detail {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.detail-label {
+    font-weight: bold;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.done-button, .raise-issue-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.done-button {
+    background-color: #edb51c;
+    color: white;
+    flex: 1;
+    margin-right: 10px;
+}
+
+.raise-issue-button {
+    background-color: #555;
+    color: white;
+    flex: 1;
+    margin-left: 10px;
+}
+.pgsvc{
+    margin-left: 5%;
+}

@@ -42,6 +42,15 @@ const TransactionSchemaDef = new mongoose.Schema({
     day: {
         type: Number,
         required: true
+    },
+    status:{
+        type:String,
+        enum:["true", "false","Pending"],
+        default:"Pending"
+    },
+    isFlagged:{
+        type:Boolean,
+        default:false
     }
 },{
     timestamps: true,

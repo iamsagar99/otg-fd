@@ -12,6 +12,8 @@
 .navbar-logo {
   display: flex;
   align-items: center;
+  width: 20px;
+  height:20px;
   font-size: 1.75rem; /* Increased font size */
 }
 

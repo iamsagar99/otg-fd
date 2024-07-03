@@ -47,7 +47,7 @@ class AuthController {
           hLon
         );
 
-        console.log("DistanceMoved:", distanceMoved);
+        // console.log("DistanceMoved:", distanceMoved);
         // console.log(userHistory)
         let loginDetail = {
           userId: user._id,
@@ -82,31 +82,13 @@ class AuthController {
             email: user.email,
           });
           //saving metadata
-          try {
-            let metadata = await MetadataModel.findOne({ userId: user._id });
-            
-            if (!metadata) {
-              const obj = {
-                userId: user._id,
-                device: [data.Device_Used],
-                os: [data.OS],
-                // txn_purpose: [data.txn_purpose],
-              };
-
-              metadata = new MetadataModel(obj);
-            // metadata = obj
-            } else {
-              metadata.device.push(data.Device_Used);
-              metadata.os.push(data.OS);
-            //   metadata.txn_purpose.push(data.txn_purpose); // txn purpose chai transaction vayepaxi push garne
-            }
-            console.log(metadata)
-            const savedMetadata = await metadata.save();
-            console.log("Metadata saved successfully", savedMetadata);
-          } catch (error) {
-            console.error("Error saving metadata:", error);
+          let savedata ={
+            Device_Used: data.Device_Used,
+            OS: data.OS,
+            auth_used: data.auth_used,
+            distanceMoved:distanceMoved
           }
-          // login obj return
+          await this.help_svc.saveMetaData("login",user,savedata)
           return res.json({
             result: {
               user: user,
@@ -173,7 +155,7 @@ class AuthController {
         }
 
         let hash = bcrypt.hashSync(data.password, 10);
-        data.authValue = hash;
+        data.password = hash;
         let message = [];
         let userexist = await UserModel.findOne({ email: data.email });
         if (userexist) {

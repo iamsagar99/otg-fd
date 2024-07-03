@@ -1,77 +1,19 @@
 const mongoose = require('mongoose');
 
-const CommonCriteriaSchema = new mongoose.Schema({
-    total_amount_per_day: {
-        type: Number,
-        required: true
-    },
-    max_amount_per_transaction: {
-        type: Number,
-        required: true
-    },
-    max_count_per_day: {
-        type: Number,
-        required: true
-    },
-    total_amount_per_month: {
-        type: Number,
-        required: true
-    },
-    max_count_per_month: {
-        type: Number,
-        required: true
-    },
-    remaining_amount_per_day: {
-        type: Number,
-        required: true
-    },
-    remaining_count_per_day: {
-        type: Number,
-        required: true
-    },
-    remaining_amount_per_month: {
-        type: Number,
-        required: true
-    },
-    remaining_count_per_month: {
-        type: Number,
-        required: true
-    }
+const transactionLimitSchema = new mongoose.Schema({
+  userType: { type: String, enum: ['Customer', 'Agent', 'Merchant'], required: true },
+  kycStatus: { type: Boolean, required: true },
+  paymentType: { type: String, enum: ['Send', 'Receive'], required: true },
+  receiverType: { type: String, enum: ['Wallet', 'MobileBanking', 'InternetBanking'], required: true },
+  bankAccLinked: { type: Boolean, required: true },
+  paymentGateway: { type: String, enum: ['Wallet', 'MobileBanking', 'InternetBanking'], required: true },
+  max_amount_per_transaction: { type: Number, required: true },
+  total_amount_per_day: { type: Number, required: true },
+  max_count_per_day: { type: Number, required: true },
+  total_amount_per_month: { type: Number, required: true },
+  max_count_per_month: { type: Number, required: true },
+  max_wallet_balance: { type: Number,required:false }  // This field is optional based on the criteria
 });
 
-const ReceiverTypeSpecificSchema = new mongoose.Schema({
-    receiver_type: {
-        type: String,
-        required: true,
-        enum: ['Merchant', 'Customer', 'Agent'] // actual receiver types
-    },
-    send_criteria: {
-        type: CommonCriteriaSchema,
-        required: true
-    },
-    receive_criteria: {
-        type: CommonCriteriaSchema,
-        required: true
-    }
-}, {
-    _id: false
-});
-
-const CustomerCriteriaSchema = new mongoose.Schema({
-    user: {
-        type: mongoose.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-    receiver_criteria: {
-        type: [ReceiverTypeSpecificSchema],
-        required: true
-    }
-}, {
-    timestamps: true,
-    autoCreate: true,
-    autoIndex: true
-});
-
-const UserCriteriaModel = mongoose.model('UserCriteriaModel', CustomerCriteriaSchema);
-module.exports = UserCriteriaModel;
+const TransactionLimit = mongoose.model('TransactionLimit', transactionLimitSchema);
+module.exports = TransactionLimit;

@@ -5,7 +5,6 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { login } from "../../services/auth.service";
 import "../../assets/user-css/login.css";
 import { useState, useEffect } from "react";
-
 import {
   getDeviceAndOSInfo,
   getUserLocation,
@@ -14,25 +13,23 @@ import {
 const LoginPage = () => {
   const navigate = useNavigate();
   const [authMethod, setAuthMethod] = useState("pin");
-
-  const [loc, setLoc] = useState();
+  const [loc, setLoc] = useState({});
   const defaultData = {
     email: "",
     auth_used: authMethod,
     authValue: "",
   };
 
-const handleAuthMethodChange = (event) => {
-  const newAuthMethod = event.target.value;
-  // console.log('Changing auth method to:', newAuthMethod);
-  setAuthMethod(newAuthMethod);
-  formik.setFieldValue("authValue", "");
-  // console.log('Current auth method:', newAuthMethod);
-};
+  const handleAuthMethodChange = (event) => {
+    const newAuthMethod = event.target.value;
+    console.log('Changing auth method to:', newAuthMethod);
+    setAuthMethod(newAuthMethod);
+    formik.setFieldValue("auth_used", newAuthMethod); // Ensure formik state is updated
+    formik.setFieldValue("authValue", "");
+    console.log('Current auth method:', newAuthMethod);
+  };
 
   const spec = getDeviceAndOSInfo();
-  let lat = "";
-  let lon = "";
 
   useEffect(() => {
     getUserLocation((error, position) => {
@@ -40,7 +37,7 @@ const handleAuthMethodChange = (event) => {
         setLoc({ lat: position.latitude, lon: position.longitude });
       }
     });
-  }, []); 
+  }, []);
 
   console.log(spec);
 
@@ -57,8 +54,8 @@ const handleAuthMethodChange = (event) => {
         const details = {
           ...values,
           ...spec,
-          lat: loc.lat,
-          lon: loc.lon
+          lat: loc.lat || "", // Ensure loc is properly accessed
+          lon: loc.lon || ""  // Ensure loc is properly accessed
         };
         const response = await login(details);
         if (response.access_token) {

@@ -12,6 +12,8 @@ import ResultDetail from "./result-detail.page";
 import StepsPage from "./steps.page";
 import VotePage from "./vote.page";
 import SendMoneyPage from './transaction.page'
+import TransactionDetails from "./statement.page";
+import TransactionHistory from "./history.page";
 
 export const Front = {
     HomePage,
@@ -27,6 +29,8 @@ export const Front = {
     ResultDetail,
     VotePage,
     ProfilePage,
-    SendMoneyPage
+    SendMoneyPage,
+    TransactionDetails,
+    TransactionHistory
     
 }

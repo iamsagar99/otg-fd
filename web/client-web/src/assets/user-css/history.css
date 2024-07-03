@@ -1,0 +1,130 @@
+.transaction-list-container {
+    width: 90%;
+    margin: 0 auto;
+    background-color: rgb(34, 34, 34);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px 0 rgba(0, 0,0, 0.2);
+    margin-top: 3vh;
+}
+
+.balance-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.balance {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.balance-label {
+    font-size: 18px;
+    align-self: center;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.filter-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #555;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    flex: 1;
+    margin: 0 5px;
+}
+
+.filter-button.active {
+    background-color: #edd23b;
+    color: black;
+}
+
+.transactions-container {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.transaction-item {
+    background-color: #333;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.transaction-date {
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 10px;
+    flex: 1;
+}
+
+.transaction-detail {
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+}
+
+.transaction-description {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.transaction-time {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.transaction-balance {
+    font-size: 14px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.transaction-amount {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.transaction-amount.positive {
+    color: green;
+}
+
+.transaction-amount.negative {
+    color: red;
+}
+
+.transaction-status.completed {
+    text-align:right;
+    margin-top:-10px;
+    color: #2eb516;
+    font-weight: bold;
+}
+
+.transaction-status.pending {
+    text-align:right;
+    margin-top:-10px;
+    color: #edc234;
+    font-weight: bold;
+}
+
+
+.transaction-status.failed {
+    text-align:right;
+    margin-top:-10px;
+    color: red;
+    font-weight: bold;
+}

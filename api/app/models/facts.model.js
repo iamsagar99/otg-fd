@@ -26,6 +26,14 @@ const FactsSchema = new mongoose.Schema({
         type: Number,
         required:true
     },// at the end of the logout
+    most_used_auth:{
+        type: String,
+        required:true
+    },// at the end of the logout
+    most_used_auth_score:{
+        type: Number,
+        required:true
+    },// at the end of the logout
     most_used_os_score:{
         type: Number,
         required:true
@@ -41,7 +49,24 @@ const FactsSchema = new mongoose.Schema({
     totalCountMonthly:{
         type: Number,
         required:true
-    }// at the end of the logout
+    },// at the end of the logout
+
+    amountMean:{
+        type: Number,
+        required:true
+    },// at the end of the logout
+    sessionLenMean:{
+        type: Number,
+        required:true
+    },// at the end of the logout
+    distanceMovedMedian:{
+        type: Number,
+        required:true
+    },// at the end of the logout
+    loginAttemptMedian:{
+        type: Number,
+        required:true
+    },// at the end of the logout
 },{
     timestamps: true,
     autoCreate: true,

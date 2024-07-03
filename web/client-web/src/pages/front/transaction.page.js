@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "../../assets/user-css/transaction.css";
+import {getUserById} from "../../services/user.service"
+import { addTransaction } from "../../services/transaction.service";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const SendMoneyPage = () => {
   const [authMethod, setAuthMethod] = useState("pin");
+  const navigate = useNavigate()
 
   const validationSchema = Yup.object().shape({
     receiverAccountNumber: Yup.string().required("Receiver Account Number is required"),
@@ -21,9 +26,21 @@ const SendMoneyPage = () => {
       authValue: "",
     },
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log("Form values", values);
-      // Handle form submission
+        //addTransaction
+        try{
+          const response = await addTransaction(values);
+            if(response.status){
+              toast.success(response.msg)
+              navigate(`/user/statement/${response.result._id}`)
+            }else{
+              toast.error(response.msg)
+              
+            }
+        }catch(err){
+          console.log(err)
+        }
     },
   });
 
@@ -31,6 +48,7 @@ const SendMoneyPage = () => {
     setAuthMethod(event.target.value);
     formik.setFieldValue("authValue", "");
   };
+
 
   return (
     <div className="send-money-page">
@@ -101,7 +119,7 @@ const SendMoneyPage = () => {
               <option value="fingerprint">Fingerprint</option>
               <option value="faceid">Face ID</option>
               <option value="otp">OTP</option>
-              <option value="thirdParty">Third Party</option>
+              <option value="password">Password</option>
               <option value="pin">PIN</option>
             </select>
           </div>
@@ -109,7 +127,7 @@ const SendMoneyPage = () => {
             <label>
               {authMethod === "pin" && "PIN"}
               {authMethod === "otp" && "OTP"}
-              {authMethod === "thirdParty" && "Third Party Code"}
+              {authMethod === "password" && "Password"}
               {authMethod === "fingerprint" && "Fingerprint Code"}
               {authMethod === "faceid" && "Face ID Code"}
             </label>

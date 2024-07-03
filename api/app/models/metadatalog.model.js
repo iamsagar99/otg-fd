@@ -23,7 +23,38 @@ const MetadataSchema = new mongoose.Schema({
             type: String,
             required:true
         }
-    ] // login success
+    ], // login success
+    auth_used:[
+        {
+            type: String,
+            required:true
+        }
+    ],// during login success
+    session_len:[
+        {
+            type: Number,
+            required:true//mean during transaction
+        }
+    ],
+    distance_moved:[
+        {
+            type: Number,
+            required:true//median during login
+        }
+    ],
+    amount:[
+        {
+            type: Number,
+            required:true//mean during transaction
+        }
+    ],
+    login_attempt:[
+        {
+            type: Number,
+            required:true//median before login
+        }
+    ]
+
 },{
     timestamps: true,
     autoCreate: true,

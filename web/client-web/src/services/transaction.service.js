@@ -1,5 +1,5 @@
 import API_ENDPOINTS from "../config/api-endpoints";
-import { getRequest, postRequest, deleteRequest } from "./axios.service";
+import { getRequest, postRequest, deleteRequest, putRequest } from "./axios.service";
 
 export const addTransaction= async (data) => {
 
@@ -29,6 +29,24 @@ export const getStatementById = async(id)=>{
 export const getUserTransactions = async(id)=>{
     try{
         const response = await getRequest(API_ENDPOINTS.TXN+'/getusertxn/'+id,true);
+        return response;
+    }catch(err){
+        throw err
+    }
+}
+
+export const getAllTxn = async()=>{
+    try{
+        const response = await getRequest(API_ENDPOINTS.TXN+'/all',true);
+        return response;
+    }catch(err){
+        throw err
+    }
+}
+
+export const updateTransaction = async(data,id)=>{
+    try{
+        const response = await putRequest(API_ENDPOINTS.TXN+'/update/'+id,data,true);
         return response;
     }catch(err){
         throw err

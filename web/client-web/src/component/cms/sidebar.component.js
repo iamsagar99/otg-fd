@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
-
-
+import '../../assets/user-css/adminsidebar.css'; // Import the custom CSS file
 
 export const AdminSidebarComponent = () => {
     const localUser = JSON.parse(localStorage.getItem("auth_user")) || {};
@@ -8,58 +7,36 @@ export const AdminSidebarComponent = () => {
     return (
         <>
             <div id="layoutSidenav_nav">
-                <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div className="sb-sidenav-menu">
+                <nav className="sidenav" id="sidenavAccordion">
+                    <div className="sidenav-menu">
                         <div className="nav">
-                            <div className="sb-sidenav-menu-heading">Core</div>
+                            <div className="sidenav-menu-heading">Core</div>
                             <NavLink className="nav-link" to="/admin">
-                                <div className="sb-nav-link-icon">
-                                    <i className="fas fa-grid-horizontal"></i>
+                                <div className="nav-link-icon">
+                                    <i className="fas fa-tachometer-alt"></i>
                                 </div>
                                 Dashboard
                             </NavLink>
-                            {/* banner */}
                             <NavLink className="nav-link" to="/admin/user">
-                                <div className="sb-nav-link-icon">
-                                    <i className="fas fa-user-group"></i>
+                                <div className="nav-link-icon">
+                                    <i className="fas fa-users"></i>
                                 </div>
                                 Users
                             </NavLink>
-                            <NavLink className="nav-link" to="/admin/election">
-                                <div className="sb-nav-link-icon">
-                                    <i className="fas fa-images"></i>
+                            <NavLink className="nav-link" to="/admin/transaction">
+                                <div className="nav-link-icon">
+                                    <i className="fas fa-vote-yea"></i>
                                 </div>
-                                Election
+                                Transactions
                             </NavLink>
-                            <NavLink className="nav-link" to="/admin/candidates">
-                                <div className="sb-nav-link-icon">
-                                    <i className="fas fa-images"></i>
-                                </div>
-                                Candidates
-                            </NavLink>
-                            <NavLink className="nav-link" to="/admin/result">
-                                <div className="sb-nav-link-icon">
-                                    <i className="fas fa-images"></i>
-                                </div>
-                                Result
-                            </NavLink>
-                            <NavLink className="nav-link" to="/admin/vote/add">
-                                <div className="sb-nav-link-icon">
-                                    <i className="fas fa-hand"></i>
-                                </div>
-                                Result
-                            </NavLink>
-
                         </div>
                     </div>
-                    <div className="sb-sidenav-footer">
+                    <div className="sidenav-footer">
                         <div className="small">Logged in as:</div>
-                        {
-                            localUser.name
-                        }
+                        {localUser.name}
                     </div>
                 </nav>
             </div>
         </>
-    )
+    );
 }

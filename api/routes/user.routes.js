@@ -15,13 +15,11 @@ router.route('/')
 router.route('/:id')
     .put(
         loginCheck,
-        isSelfUserOrAdmin,
         user_obj.updateUserById
         )
 
         .delete(
         loginCheck,
-        isAdmin,
         user_obj.deleteUserById
         )
 

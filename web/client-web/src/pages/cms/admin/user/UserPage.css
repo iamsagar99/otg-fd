@@ -1,0 +1,64 @@
+.container-fluid {
+    padding: 2rem;
+    background-color: #f4f6f9; /* Light background for content area */
+}
+
+.dataTable {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.dataTable .rdt_TableHeadRow {
+    background-color: #34495e; /* Header background color */
+    color: #ecf0f1; /* Header text color */
+}
+
+.dataTable .rdt_TableRow {
+    background-color: #ffffff;
+    color: #34495e; /* Row text color */
+}
+
+.dataTable .rdt_TableRow:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.dataTable .rdt_Pagination {
+    background-color: #ffffff;
+    color: #34495e; /* Pagination text color */
+    border-top: 1px solid #e0e0e0;
+    padding: 1rem;
+}
+
+.dataTable .rdt_TableCol {
+    padding: 1rem;
+    font-weight: bold;
+}
+
+.dataTable .rdt_TableCell {
+    padding: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.dataTable .rdt_TableCell button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    color: #ffffff;
+    background-color: #3498db; /* Button background color */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dataTable .rdt_TableCell button:hover {
+    background-color: #2980b9;
+}
+
+.dataTable .rdt_TableCell button.delete-btn {
+    background-color: #e74c3c; /* Delete button background color */
+}
+
+.dataTable .rdt_TableCell button.delete-btn:hover {
+    background-color: #c0392b;
+}

@@ -201,6 +201,24 @@ getTransactionOfUser = async (req, res, next) => {
     }
 }
 
+updateTransaction = async(req,res,next)=>{
+    try{
+        let txnId = req.params.txnId;
+        let data = req.body;
+        let txn = await TransactionModel.updateOne(
+          { _id: txnId },
+          { $set: data }
+        );
+        res.json({
+            result:txn,
+            status:true,
+            msg:"Transaction updated successfully."
+        })
+        }catch(error){
+            next(error);
+        }
+}
+
 
   
 }

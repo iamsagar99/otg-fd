@@ -2,55 +2,43 @@ import { Col, Row } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import { AdminBreadCrumb } from "../../../../component/cms/breadcrumb.component";
 import { useEffect, useState, useCallback } from "react";
-import { deleteUserById, getUserByRole } from "../../../../services/user.service";
 import { toast } from "react-toastify";
 import ActionButtons from "../../../../component/common/action-btns/action-buttons.component";
-import './UserPage.css'; // Import custom CSS for styling
+import '../user/UserPage.css'; 
+import { getAllTxn, updateTransaction } from "../../../../services/transaction.service";
 
-const UserPage = () => {
-    const deleteUser = async (id) => {
-        try {
-            let response = await deleteUserById(id);
-            if (response.status) {
-                toast.success(response.msg);
-                getAllUsers();
-            } else {
-                toast.error(response.msg);
-            }
-        } catch (err) {
-            console.log("delete", err);
-        }
-    };
 
+const TransactionPage = () => {
+    
     const columns = [
         {
-            name: 'Name',
-            selector: row => row.name,
+            name: 'SenderAccountNumber',
+            selector: row => row.accountNumber._id,
             sortable: true,
         },
         {
-            name: 'Email',
-            selector: row => row.email,
+            name: 'SenderName',
+            selector: row => row.accountNumber.name,
             sortable: true,
         },
         {
-            name: 'Phone Number',
-            selector: row => row.phoneNumber,
+            name: 'Transaction Purpose',
+            selector: row => row.txnPurpose,
             sortable: true,
         },
         {
-            name: 'Account Number',
-            selector: row => row.accountNumber,
+            name: 'Amount',
+            selector: row => row.amount,
             sortable: true,
         },
         {
-            name: 'User Type',
-            selector: row => row.userType,
+            name: 'ReceiverAccountNumber',
+            selector: row => row.receiverAccNo._id,
             sortable: true,
         },
         {
-            name: 'Current Balance',
-            selector: row => `$${row.currentBalance}`,
+            name: 'ReceiverName',
+            selector: row => row.receiverAccNo.name,
             sortable: true,
         },
         {
@@ -59,21 +47,31 @@ const UserPage = () => {
             sortable: true,
         },
         {
+            name: 'isFlagged',
+            selector: row => row.isFlagged?"Yes":"No",
+            sortable: true,
+        },
+        {
+            name:"Timestamp",
+            //show displayable timestamp
+            selector: row => new Date(row.timeStamp).toLocaleString(),
+            sortable:true
+        },
+
+        {
             name: 'Action',
-            cell: row => <ActionButtons id={row._id} onDeleteClick={deleteUser} updatePath={`/admin/user/${row._id}`} />,
+            cell: row => <ActionButtons id={row._id} updatePath={`/admin/transaction/${row._id}`} />,
             ignoreRowClick: true,
             allowOverflow: true,
             button: true,
         },
     ];
 
-    const getAllUsers = useCallback(async () => {
+    const getAllTransactions = useCallback(async () => {
         try {
-            let response = await getUserByRole('all');
+            let response = await getAllTxn();
             if (response.status) {
-                let logged_in_user = JSON.parse(localStorage.getItem("auth_user"));
-                let all_users = response.result.filter((item) => item._id !== logged_in_user._id);
-                setData(all_users);
+                setData(response.result);
             } else {
                 toast.error(response.msg);
             }
@@ -85,13 +83,13 @@ const UserPage = () => {
 
     const [data, setData] = useState([]);
     useEffect(() => {
-        getAllUsers();
-    }, [getAllUsers]);
+        getAllTransactions();
+    }, [getAllTransactions]);
 
     return (
         <>
             <div className="container-fluid px-4">
-                <AdminBreadCrumb createUrl={"/admin/user/create"} type={"User"} opt={"Listing"} />
+                <AdminBreadCrumb createUrl={"/admin/transaction"} type={"Transaction"} opt={"Listing"} />
                 <Row>
                     <Col sm={12}>
                         <DataTable
@@ -106,4 +104,4 @@ const UserPage = () => {
     );
 };
 
-export default UserPage;
+export default TransactionPage;

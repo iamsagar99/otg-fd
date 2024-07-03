@@ -1,0 +1,30 @@
+.admin-footer {
+    padding: 1rem 0;
+    background-color: RGB(34,34,34);
+    margin-top: auto;
+    color: #e3b630;
+}
+
+.admin-footer-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.admin-footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.875rem;
+}
+
+.admin-footer-text {
+    color: #e3b630;
+}
+
+@media (max-width: 576px) {
+    .admin-footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}

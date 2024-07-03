@@ -1,0 +1,56 @@
+.admin-breadcrumb-title {
+    margin-top: 1rem;
+    color: #e3b630;
+    font-size: 2rem;
+}
+
+.admin-breadcrumb-button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    float: right;
+    text-decoration: none;
+    font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.admin-breadcrumb-button:hover {
+    background-color: #218838;
+}
+
+.admin-breadcrumb-icon {
+    margin-right: 0.5rem;
+}
+
+.admin-breadcrumb-list {
+    margin-bottom: 1rem;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.admin-breadcrumb-item {
+    margin-right: 0.5rem;
+}
+
+.admin-breadcrumb-link {
+    color: #e3b630;
+    text-decoration: none;
+}
+
+.admin-breadcrumb-link:hover {
+    text-decoration: underline;
+}
+
+.admin-breadcrumb-item::after {
+    content: ">";
+    margin-left: 0.5rem;
+    color: #e3b630;
+}
+
+.admin-breadcrumb-item:last-child::after {
+    content: "";
+}

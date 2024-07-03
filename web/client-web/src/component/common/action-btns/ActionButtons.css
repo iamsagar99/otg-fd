@@ -1,0 +1,28 @@
+.action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    font-size: 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button {
+    background-color: #17a2b8; /* Info button background color */
+}
+
+.edit-button:hover {
+    background-color: #138496;
+}
+
+.delete-button {
+    background-color: #dc3545; /* Danger button background color */
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}

@@ -1,0 +1,58 @@
+.topnav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #34495e; /* Updated to match sidebar */
+    padding: 0.5rem 1rem;
+    color: #ecf0f1;
+    margin-left: 250px; /* Account for sidebar width */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    color: #ecf0f1;
+    text-decoration: none;
+}
+
+.sidebar-toggle {
+    background: none;
+    border: none;
+    color: #ecf0f1;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.sidebar-toggle:focus {
+    outline: none;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.logout-button {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ecf0f1;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #ecf0f1;
+    color: #34495e;
+}
+
+@media (max-width: 576px) {
+    .topnav {
+        flex-direction: column;
+        margin-left: 0;
+    }
+
+    .navbar-right {
+        margin-top: 0.5rem;
+    }
+}

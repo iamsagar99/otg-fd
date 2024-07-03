@@ -10,3 +10,8 @@ export const calcFacts= async () => {
         throw error.response.data.msg
     }
 }
+
+export const getAllProviders=(pg)=>{
+    return getRequest(API_ENDPOINTS.PROVIDERS+'/?pg='+pg,true);
+    
+}

@@ -35,11 +35,13 @@ const UserSchemaDef = new mongoose.Schema({
     },
     phoneNumber: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     accountNumber: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     paymentGateway: {
         type: String,
@@ -67,6 +69,12 @@ const UserSchemaDef = new mongoose.Schema({
     currentBalance: {
         type: Number,
         default: 0.00
+    },
+    status:{
+        type: String,
+        enum:['Active','Inactive'],
+        default: 'Inactive'
+    
     }
 },{
     timestamps: true,

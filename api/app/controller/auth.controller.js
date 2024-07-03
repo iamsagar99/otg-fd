@@ -24,8 +24,8 @@ class AuthController {
         });
       }
 
-      console.log("trying login");
-      console.log(data.email, data.authValue);
+      //console.log("trying login");
+      //console.log(data.email, data.authValue);
       let user = await UserModel.findOne({ email: data.email }).populate({
         path: "provider",
         select: "name",
@@ -47,8 +47,8 @@ class AuthController {
           hLon
         );
 
-        // console.log("DistanceMoved:", distanceMoved);
-        // console.log(userHistory)
+        // //console.log("DistanceMoved:", distanceMoved);
+        // //console.log(userHistory)
         let loginDetail = {
           userId: user._id,
           attempts: userHistory ? userHistory.attempts + 1 : 1,
@@ -66,15 +66,15 @@ class AuthController {
             { _id: userHistory._id },
             loginDetail
           );
-          console.log("Login updated",updatedRes);
+          //console.log("Login updated",updatedRes);
         } else {
           await new LoginDetailModel(loginDetail).save();
-          console.log("Login saved");
+          //console.log("Login saved");
         }
 
         // login matched? if matched then also add it to metadatalog
-        console.log("data",data)
-        console.log("user",user)
+        //console.log("data",data)
+        //console.log("user",user)
         let isMatch = bcrypt.compareSync(data.authValue, user.password);
         if (isMatch) {
           let access_token = this.auth_svc.generateAccessToken({
@@ -112,7 +112,7 @@ class AuthController {
         });
       }
     } catch (error) {
-      console.log("LoginException:", error);
+      //console.log("LoginException:", error);
       next({
         status: error.status || 500,
         msg: error.msg || "Something went wrong. Server error",
@@ -123,11 +123,11 @@ class AuthController {
   //===============================================================================
   register = async (req, res, next) => {
     let data = req.body;
-    console.log('chkp1',data)
+    //console.log('chkp1',data)
     try {
       let errors = this.auth_svc.registerValidate(data);
       if (errors) {
-        console.log('chkp2',errors)
+        //console.log('chkp2',errors)
 
         return {
           status: false,
@@ -135,20 +135,20 @@ class AuthController {
           result: errors,
         };
       } else {
-        console.log('chkp3')
+        //console.log('chkp3')
 
         data.accountNumber = this.help_svc.generateRandomString();
         let doesAccountNumExist = true;
 
         while (doesAccountNumExist) {
-          console.log('chkp4')
+          //console.log('chkp4')
 
           if (await UserModel.findOne({ accountNumber: data.accountNumber })) {
-            console.log('chkp5')
+            //console.log('chkp5')
 
             data.accountNumber = this.help_svc.generateRandomString();
           } else {
-            console.log('chkp6')
+            //console.log('chkp6')
 
             doesAccountNumExist = false;
           }
@@ -159,7 +159,7 @@ class AuthController {
         let message = [];
         let userexist = await UserModel.findOne({ email: data.email });
         if (userexist) {
-          console.log('chkp7')
+          //console.log('chkp7')
 
           message.push("User already exists");
         }
@@ -167,7 +167,7 @@ class AuthController {
         user
           .save()
           .then((ack) => {
-            console.log('chkp8')
+            //console.log('chkp8')
 
             message.push("User registered successfully");
             let msg = message[0];
@@ -178,7 +178,7 @@ class AuthController {
             });
           })
           .catch((err) => {
-            console.log("RegisterError:", err);
+            //console.log("RegisterError:", err);
             next({
               status: 500,
               msg: "Error registering user",
@@ -186,7 +186,7 @@ class AuthController {
           });
       }
     } catch (err) {
-      console.log("RegisterException:", err);
+      //console.log("RegisterException:", err);
       next({
         status: err.status || 500,
         msg: err.msg || "Something went wrong. Server error",

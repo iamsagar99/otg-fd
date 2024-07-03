@@ -37,7 +37,11 @@ class Institution{
     }
     getProviders = async (req,res,next) =>{
         try{
-            let providers = await InstitutionModel.find()
+            let filter = {};
+            if(req.query.pg){
+                filter = {paymentGateway: req.query.pg}
+            }
+            let providers = await InstitutionModel.find(filter)
             if(providers){
                 res.json({
                     result: providers,

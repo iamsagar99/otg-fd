@@ -63,7 +63,7 @@ class TransactionController {
       };
       //TODO:API CALL TO ML MODEL
       //checkAnomaly(data.accountNumber,loginDtl,data.sessionLen,data.txnPurpose,data.amount,data.year,data.month,data.day,data.receiverAccNo,data.timeStamp)
-      await this.anomaly_svc.checkAnomaly(data.accountNumber,loginDtl,data.sessionLen,data.txnPurpose,data.amount,data.year,data.month,data.day,data.receiverAccNo,data.timeStamp)
+      let prediction = await this.anomaly_svc.calculateMetric(data.accountNumber,loginDtl,data.sessionLen,data.txnPurpose,data.amount,data.year,data.month,data.day,data.receiverAccNo,data.timeStamp)
       // Update sender's balance
       let dataMeta = {
         txn_purpose: inp.txnPurpose,
@@ -71,13 +71,28 @@ class TransactionController {
         amount: inp.amount,
       };
       await this.help_svc.saveMetaData("txn", sender, dataMeta);
-      sender.currentBalance -= inp.amount;
-      await sender.save();
 
-      // Update receiver's balance
-      receiver.currentBalance += inp.amount;
-      await receiver.save();
+      //flag garyo
+      if(prediction.anomaly_score < 0.012) {
+        data.status = "Pending"
+        data.isFlagged = true
+        data.score = prediction.score
 
+        sender.currentBalance -= inp.amount;
+        await sender.save();
+      }else{
+        //success vayo
+        data.status = "true"
+        data.score = prediction.score
+        sender.currentBalance -= inp.amount;
+        await sender.save();
+
+        // Update receiver's balance
+        receiver.currentBalance += inp.amount;
+        await receiver.save();
+
+      }
+      
       // Save the transaction
       const txn = new TransactionModel(data);
       await txn.save();
@@ -205,6 +220,27 @@ updateTransaction = async(req,res,next)=>{
     try{
         let txnId = req.params.txnId;
         let data = req.body;
+        let txndata = await TransactionModel.findById(txnId);
+        if(!txndata){
+            return res.json({
+                result: null,
+                status: false,
+                msg: "Transaction does not exist.",
+              });
+        }
+        if(txndata.status=="Pending" && data.status=="true"){
+            let sender = await UserModel.findById(txndata.accountNumber);
+            let receiver = await UserModel.findById(txndata.receiverAccNo);
+            // sender.currentBalance += txndata.amount;
+            receiver.currentBalance += txndata.amount;
+            await sender.save();
+            await receiver.save();
+        }else if (txndata.status=="Pending" && data.status=="false"){
+            let sender = await UserModel.findById(txndata.accountNumber);
+            sender.currentBalance += txndata.amount;
+            await sender.save();
+        }
+
         let txn = await TransactionModel.updateOne(
           { _id: txnId },
           { $set: data }

@@ -57,6 +57,7 @@ const TransactionEdit = () => {
           amount: transaction.amount,
           status: transaction.status,
           isFlagged: transaction.isFlagged,
+          score: transaction.score,
         });
       }
     } catch (err) {
@@ -173,6 +174,17 @@ const TransactionEdit = () => {
                 />
               </div>
               <div className="form-group">
+                <label htmlFor="score">Anomaly Score</label>
+                <input
+                  type="number"
+                  id="score"
+                  name="score"
+                  value={data.score}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
                 <label htmlFor="status">Status</label>
                 <select
                   id="status"
@@ -194,6 +206,7 @@ const TransactionEdit = () => {
                   checked={data.isFlagged}
                   onChange={handleChange}
                   className="form-check-input"
+                  disabled
                 />
                 <label htmlFor="isFlagged" className="form-check-label">
                   Is Flagged

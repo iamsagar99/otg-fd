@@ -40,7 +40,7 @@ const UserPage = () => {
         },
         {
             name: 'Account Number',
-            selector: row => row.accountNumber,
+            selector: row => row._id,
             sortable: true,
         },
         {

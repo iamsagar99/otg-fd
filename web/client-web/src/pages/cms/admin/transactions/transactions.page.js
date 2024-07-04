@@ -47,6 +47,11 @@ const TransactionPage = () => {
             sortable: true,
         },
         {
+            name: 'Anomaly Score',
+            selector: row => row.score,
+            sortable: true,
+        },
+        {
             name: 'isFlagged',
             selector: row => row.isFlagged?"Yes":"No",
             sortable: true,

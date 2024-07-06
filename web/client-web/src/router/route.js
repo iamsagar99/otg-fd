@@ -22,7 +22,7 @@ const UserPrivateRoute = () => {
             if(localUser.userType!=="admin"){
                 return <HomeLayout />;
             }else{
-                return <Navigate to="/login" />;
+                return <Navigate to="/" />;
             }
                 
         }

@@ -88,7 +88,7 @@ const RegisterPage = () => {
                 <form onSubmit={formik.handleSubmit} className="register-form">
                     <div className="form-row">
                         <div className="form-group">
-                            <label>Name</label>
+                            <label style={{color:"white"}}>Name</label>
                             <input
                                 type="text"
                                 name="name"
@@ -99,7 +99,7 @@ const RegisterPage = () => {
                             {formik.errors.name && <div className="error">{formik.errors.name}</div>}
                         </div>
                         <div className="form-group">
-                            <label>Email</label>
+                            <label style={{color:"white"}}>Email</label>
                             <input
                                 type="email"
                                 name="email"
@@ -112,7 +112,7 @@ const RegisterPage = () => {
                     </div>
                     <div className="form-row">
                         <div className="form-group">
-                            <label>Password</label>
+                            <label style={{color:"white"}}>Password</label>
                             <input
                                 type="password"
                                 name="password"
@@ -123,7 +123,7 @@ const RegisterPage = () => {
                             {formik.errors.password && <div className="error">{formik.errors.password}</div>}
                         </div>
                         <div className="form-group">
-                            <label>Phone Number</label>
+                            <label style={{color:"white"}}>Phone Number</label>
                             <input
                                 type="text"
                                 name="phoneNumber"
@@ -136,7 +136,7 @@ const RegisterPage = () => {
                     </div>
                     <div className="form-row">
                         <div className="form-group">
-                            <label>Date of Birth</label>
+                            <label style={{color:"white"}}>Date of Birth</label>
                             <input
                                 type="date"
                                 name="dob"
@@ -147,7 +147,7 @@ const RegisterPage = () => {
                             {formik.errors.dob && <div className="error">{formik.errors.dob}</div>}
                         </div>
                         <div className="form-group">
-                            <label>Address</label>
+                            <label style={{color:"white"}}>Address</label>
                             <input
                                 type="text"
                                 name="address"
@@ -160,7 +160,7 @@ const RegisterPage = () => {
                     </div>
                     <div className="form-row">
                         <div className="form-group">
-                            <label>City</label>
+                            <label style={{color:"white"}}>City</label>
                             <input
                                 type="text"
                                 name="city"
@@ -171,7 +171,7 @@ const RegisterPage = () => {
                             {formik.errors.city && <div className="error">{formik.errors.city}</div>}
                         </div>
                         <div className="form-group">
-                            <label>State</label>
+                            <label style={{color:"white"}}>State</label>
                             <input
                                 type="text"
                                 name="state"
@@ -184,7 +184,7 @@ const RegisterPage = () => {
                     </div>
                     <div className="form-row">
                         <div className="form-group">
-                            <label>Zipcode</label>
+                            <label style={{color:"white"}}>Zipcode</label>
                             <input
                                 type="text"
                                 name="zipcode"
@@ -195,7 +195,7 @@ const RegisterPage = () => {
                             {formik.errors.zipcode && <div className="error">{formik.errors.zipcode}</div>}
                         </div>
                         <div className="form-group">
-                            <label>Customer Type</label>
+                            <label style={{color:"white"}}>Customer Type</label>
                             <select
                                 name="customerType"
                                 value={formik.values.customerType}
@@ -212,7 +212,7 @@ const RegisterPage = () => {
                     </div>
                     <div className="form-row">
                         <div className="form-group">
-                            <label>Payment Gateway</label>
+                            <label style={{color:"white"}}>Payment Gateway</label>
                             <select
                                 name="paymentGateway"
                                 value={formik.values.paymentGateway}
@@ -230,7 +230,7 @@ const RegisterPage = () => {
                             {formik.errors.paymentGateway && <div className="error">{formik.errors.paymentGateway}</div>}
                         </div>
                         <div className="form-group">
-                            <label>Provider</label>
+                            <label style={{color:"white"}}>Provider</label>
                             <select
                                 name="provider"
                                 value={formik.values.provider}

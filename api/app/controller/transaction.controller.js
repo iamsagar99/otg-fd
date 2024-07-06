@@ -59,7 +59,8 @@ class TransactionController {
         year: currentTime.getFullYear(),
         month: currentTime.getMonth() + 1,
         day: currentTime.getDate(),
-        status:"true"
+        status:"true",
+        score:0
       };
       //TODO:API CALL TO ML MODEL
       //checkAnomaly(data.accountNumber,loginDtl,data.sessionLen,data.txnPurpose,data.amount,data.year,data.month,data.day,data.receiverAccNo,data.timeStamp)
@@ -70,20 +71,21 @@ class TransactionController {
         session_len: sessionLen,
         amount: inp.amount,
       };
+      
       await this.help_svc.saveMetaData("txn", sender, dataMeta);
 
       //flag garyo
       if(prediction.anomaly_score < 0.012) {
         data.status = "Pending"
         data.isFlagged = true
-        data.score = prediction.score
+        data.score = prediction.anomaly_score
 
         sender.currentBalance -= inp.amount;
         await sender.save();
       }else{
         //success vayo
         data.status = "true"
-        data.score = prediction.score
+        data.score = prediction.anomaly_score
         sender.currentBalance -= inp.amount;
         await sender.save();
 
@@ -220,6 +222,7 @@ updateTransaction = async(req,res,next)=>{
     try{
         let txnId = req.params.txnId;
         let data = req.body;
+        console.log(data)
         let txndata = await TransactionModel.findById(txnId);
         if(!txndata){
             return res.json({
@@ -232,12 +235,17 @@ updateTransaction = async(req,res,next)=>{
             let sender = await UserModel.findById(txndata.accountNumber);
             let receiver = await UserModel.findById(txndata.receiverAccNo);
             // sender.currentBalance += txndata.amount;
-            receiver.currentBalance += txndata.amount;
-            await sender.save();
+            let bal = receiver.currentBalance;
+            bal = bal+txndata.amount;
+            receiver.currentBalance = bal;
+            // await sender.save();
             await receiver.save();
         }else if (txndata.status=="Pending" && data.status=="false"){
             let sender = await UserModel.findById(txndata.accountNumber);
-            sender.currentBalance += txndata.amount;
+            let bal = sender.currentBalance;
+            bal = bal + txndata.amount;
+            
+            sender.currentBalance =bal;
             await sender.save();
         }
 

@@ -162,7 +162,24 @@ class AuthController {
           //console.log('chkp7')
 
           message.push("User already exists");
+          return res.json({
+            result: null,
+            msg: "User already exists. Please Login",
+            status: false,
+          
+          })
         }
+        let phoneExist  = await UserModel.findOne({ phoneNumber: data.phoneNumber });
+        if (phoneExist) {
+          message.push("Phone number already exists");
+          return res.json({
+            result: null,
+            msg: "Phone number already exists.",
+            status: false,
+          
+          })
+        }
+        
         let user = new UserModel(data);
         user
           .save()

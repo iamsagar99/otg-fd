@@ -112,23 +112,24 @@ class AnomalyService {
 
     let Facts = await FactsModel.findOne({ userId: accountNumber });
 
-    let meanSessionLen = Facts.sessionLenMean;
-    let login_attempt_median = Facts.loginAttemptMedian;
-    let Distance_Moved_median = Facts.distanceMovedMedian;
-    let Amount_mean = Facts.amountMean;
-    let most_used_device = Facts.most_used_device;
-    let most_used_os = Facts.most_used_os;
-    let most_used_auth_used = Facts.most_used_auth;
-    let most_used_txn_purpose = Facts.most_used_txn_purpose;
-    let age = Facts.Age;
-    let totalAmountMonthly = Facts.totalAmountMonthly;
-    let totalCountMonthly = Facts.totalCountMonthly;
+    let meanSessionLen = Facts.sessionLenMean || 0;
+    let login_attempt_median = Facts.loginAttemptMedian || 0;
+    let Distance_Moved_median = Facts.distanceMovedMedian || 0;
+    let Amount_mean = Facts.amountMean || 0;
+    let most_used_device = Facts.most_used_device || '';
+    let most_used_os = Facts.most_used_os || '';
+    let most_used_auth_used = Facts.most_used_auth || '';
+    let most_used_txn_purpose = Facts.most_used_txn_purpose || '';
+    let age = Facts.Age || 18;
+    let totalAmountMonthly = Facts.totalAmountMonthly || 0;
+    let totalCountMonthly = Facts.totalCountMonthly || 0;
 
     // Create deviation features
     let sessionLenDeviation = sessionLen - meanSessionLen;
     let loginAttemptDeviation = loginDtl.attempts - login_attempt_median;
     let distanceMovedDeviation = distanceMoved - Distance_Moved_median;
     let amountDeviation = Amount - Amount_mean;
+
 
     const addAnomalyMetric = (item, mostUsedItem, mostUsedItemScore) => {
       const isMostUsedItem = item === mostUsedItem ? 1 : 0;
@@ -140,7 +141,9 @@ class AnomalyService {
     let score_os = addAnomalyMetric(os, most_used_os, Facts.most_used_os_score);
     let score_auth_used = addAnomalyMetric(auth_used, most_used_auth_used, Facts.most_used_auth_score);
     let score_txn_purpose = addAnomalyMetric(txn_purpose, most_used_txn_purpose, Facts.most_used_txn_purpose_score);
-
+    if (!score_txn_purpose){
+      score_txn_purpose = 0;
+    }
     let Hour = TimeStamp.getHours();
     let DayOfWeek = TimeStamp.getDay();
 
@@ -172,8 +175,10 @@ class AnomalyService {
     let arr = Object.values(dataObj)
     let obj = {};
     obj.features = arr;
+    console.log(obj.features)
     let url = "http://localhost:8001/predict"
     let response = await axios.post(url,obj)
+    console.log(response.data)
     return response.data;
     // console.log("returned value is ie. predicted")  
     // console.log(response.data)

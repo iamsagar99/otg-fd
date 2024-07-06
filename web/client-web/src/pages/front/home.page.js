@@ -7,9 +7,10 @@ const navigate = useNavigate()
 
 <div className="hero">
       <div className="hero-content">
-        <h1>Realtime Financial Fraud Detection</h1>
-        <p>Stay ahead of financial threats with our advanced fraud detection solutions.</p>
-        <button className="cta-button">Learn More</button>
+        <h1 style={{fontSize:'3.2rem'}}>Realtime Financial Transaction Anomaly Detection</h1>
+        <p style={{fontSize:'2.2rem'}}>Stay ahead of financial threats with our advanced fraud detection solutions.</p>
+        <em style={{fontSize:'2.2rem'}}>This is a simulator app describing how this anomaly detection system can be integrate with existing financial service provider.</em>
+        {/* <button className="cta-button">Learn More</button> */}
       </div>
     </div>
 </>

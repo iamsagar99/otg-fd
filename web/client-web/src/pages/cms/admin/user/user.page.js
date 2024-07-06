@@ -50,7 +50,7 @@ const UserPage = () => {
         },
         {
             name: 'Current Balance',
-            selector: row => `$${row.currentBalance}`,
+            selector: row => `Npr.${row.currentBalance}`,
             sortable: true,
         },
         {

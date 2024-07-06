@@ -69,11 +69,19 @@ const TransactionDetails = () => {
           </div>
         </div>
         <div
-          className={`transaction-status ${
-            transaction.status === "true" ? "complete" : "incomplete"
-          }`}
-        >
-          {transaction.status === "true" ? "COMPLETE" : "INCOMPLETE"}
+         className={`transaction-status ${
+          transaction.status === "true"
+            ? "complete"
+            : transaction.status === "false"
+            ? "incomplete"
+            : "pending"
+        }`}>
+          {transaction.status === "true"
+            ? "COMPLETE"
+            : transaction.status === "false"
+            ? "INCOMPLETE"
+            : "PENDING"}
+        
         </div>
         <div className="transaction-details-section">
           <div className="transaction-detail">

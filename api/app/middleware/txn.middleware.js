@@ -1,6 +1,7 @@
 const UserModel = require('../models/user.model');
 const TransactionLimitModel = require('../models/criteria.model');
 const TransactionModel = require('../models/transaction.model');
+const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 // const CriteriaService = require('../services/criteria.service');
 
@@ -60,8 +61,16 @@ const checkCriteria = async (req, res, next) => {
             })
         }
         // Fetch the receiving user details
-        
-        let receiverUser = await UserModel.findById(req.body.receiverAccNo);
+        //findById(req.body.receiverAccNo);
+        let trueId = mongoose.Types.ObjectId.isValid(req.body.receiverAccNo);
+        if (!trueId) {
+            return res.json({
+                result: null,
+                status: false,
+                msg: "Invalid Receiver Account Number"
+            });
+        }
+        let receiverUser = await UserModel.findOne({_id:req.body.receiverAccNo})
         if (!receiverUser) {
             return res.json({
                 result: null,
@@ -93,7 +102,7 @@ const checkCriteria = async (req, res, next) => {
             return res.json({
                 result: null,
                 status: false,
-                msg: "Sender criteria not found"
+                msg: "Sender criteria not found. You can not proceed with transaction."
             });
         }
 
